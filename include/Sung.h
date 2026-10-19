@@ -6,19 +6,28 @@ private:
     int danTrongOng;
     double tocDoThayBang; // giay
 public:
+    //Constructor
     Sung();
     Sung(const std::string& ten, int satThuong, double tocDo, int dan, double thayBang);
+
+    //Getter, setter
     int getDanTrongOng() const;
     double getTocDoThayBang() const;
     void setDanTrongOng(int dan);
     void setTocDoThayBang(double giay);
+
+    //Xu ly
     void TanCong() override;
     int SatThuong(int t) const override;
     std::string getLoai() const override;
-    void xuat(std::ostream& os) const override;
-    void nhap(std::istream& is) override;
     void NapDan();
     bool ConDan() const;
     void SuDungDan();
+    
+    //Qua tai nhap xuat
+    void xuat(std::ostream& os) const override;
+    void nhap(std::istream& is) override;
+
+    
 };
 #endif

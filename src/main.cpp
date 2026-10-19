@@ -11,10 +11,7 @@
 #include <windows.h>
 #endif
 
-
 using namespace std;
-
-
 
 void mauChu(int mau) {
 #ifdef _WIN32
