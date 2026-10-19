@@ -1,0 +1,39 @@
+# Đồ án OOP: Sát thương nhân vật — Console 2D
+
+## Đối chiếu yêu cầu giảng viên
+- 3 điểm báo cáo Word: dự án có cấu trúc lớp, mô tả quy luật, phân công, giải thích code và hướng dẫn demo; nhóm cần hoàn thiện thông tin thành viên và ảnh minh chứng.
+- 2 điểm thiết kế lớp cơ bản: lớp `VuKhi` có constructor mặc định/có tham số, getter/setter và nạp xuất `>>`, `<<`. Các lớp dẫn xuất cũng có constructor, getter/setter và ghi đè nhập xuất.
+- 1 điểm kế thừa: `Sung`, `Kiem`, `PhepThuat` kế thừa `VuKhi`.
+- 2 điểm đa hình: `TanCong()`, `SatThuong(int t)`, `getLoai()` là hàm ảo; lớp con override. Chương trình gọi qua `VuKhi*` và chọn hành vi bằng kiểu thực tế.
+- 2 điểm Console 2D: dùng khung ASCII, nhân vật/boss, thanh máu, màu console và `iomanip`.
+
+## Cấu trúc
+- `include/`: khai báo lớp.
+- `src/`: định nghĩa phương thức và chương trình.
+- `CMakeLists.txt`: cấu hình biên dịch không cần SFML.
+
+## Build
+```bash
+cmake -S . -B build
+cmake --build build
+```
+Windows có thể mở thư mục bằng Visual Studio CMake hoặc biên dịch các file `.cpp` và thêm `include` vào đường dẫn header.
+Linux:
+```bash
+g++ -std=c++17 -Iinclude src/*.cpp -o SatThuongNhanVat
+./SatThuongNhanVat
+```
+
+## Điều khiển
+1/2/3: chọn vũ khí; 4: tấn công; 5: nạp đạn; 6: xem trạng thái; 7: hồi mana; 8: chơi lại; 0: thoát.
+
+## Quy luật chiến đấu
+- Nhân vật có 100 HP, Boss có 160 HP.
+- Mỗi lượt đánh, vũ khí gây sát thương theo `SatThuong(1)`; Boss còn sống sẽ phản công 8–12 HP.
+- Súng dùng một viên đạn/lượt; kiếm giảm độ bền 1 mỗi lần đánh; phép thuật tiêu hao mana theo số giây tấn công.
+- Chơi lại phục hồi HP, đạn, mana và độ bền.
+- Đây là mô phỏng theo lượt trong Console; `t` trong `SatThuong(int t)` được hiểu là số giây sử dụng vũ khí.
+
+## Lưu ý
+- Màu console dùng Windows Console API trên Windows; trên Linux/macOS mã màu chưa được triển khai (các lệnh game vẫn chạy).
+- Nếu terminal không hỗ trợ UTF-8 hoặc các ký tự khung, dùng terminal hỗ trợ Unicode. Nội dung mặc định không dấu để tránh lỗi font.
