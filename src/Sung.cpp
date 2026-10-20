@@ -34,10 +34,10 @@ void Sung::TanCong() {
     std::cout<<" * BANG! Sung "<<tenVuKhi_<<" khai hoa.\n";
 }
 
-int Sung::SatThuong(int thoiGian) const {
-    if(thoiGian<0||danTrongOng<=0)
+int Sung::SatThuong(int t) const {
+    if(t<0||danTrongOng<=0)
         return 0; 
-    int soPhat=static_cast<int>(thoiGian*tocDo_); 
+    int soPhat=static_cast<int>(t*tocDo_); 
     if(soPhat>danTrongOng) soPhat=danTrongOng;
     return soPhat*satThuong_;
 }

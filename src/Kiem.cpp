@@ -20,10 +20,10 @@ void Kiem::setDoBen(int b) {
 void Kiem::TanCong() {
     std::cout<<" * XEO! Kiem "<<tenVuKhi_<<" chem mot nhat.\n";
 }
-int Kiem::SatThuong(int thoiGian) const {
-    if(thoiGian<0||doBen<=0)
+int Kiem::SatThuong(int t) const {
+    if(t<0||doBen<=0)
         return 0;
-    int soNhat=static_cast<int>(thoiGian*tocDo_);
+    int soNhat=static_cast<int>(t*tocDo_);
     return soNhat*satThuong_;
 }
 std::string Kiem::getLoai() const {

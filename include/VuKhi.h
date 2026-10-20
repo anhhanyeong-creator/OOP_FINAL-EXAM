@@ -21,7 +21,7 @@ class VuKhi {
         void setTocDoRaDon(double tocDo);
 
         virtual void TanCong() = 0;
-        virtual int SatThuong(int thoiGian) const = 0;
+        virtual int SatThuong(int t) const = 0;
         virtual std::string getLoai() const = 0;
 
         virtual void xuat(std::ostream& os) const;
