@@ -11,7 +11,7 @@
 - `include/`: khai báo lớp.
 - `src/`: định nghĩa phương thức và chương trình.
 - `CMakeLists.txt`: cấu hình biên dịch không cần SFML.
-
+- 'docs/': Chứa tất cả nội dung đề tài, yêu cầu đề tài, file báo cáo.
 ## Build
 ```bash
 cmake -S . -B build
