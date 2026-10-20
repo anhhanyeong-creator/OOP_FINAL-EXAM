@@ -28,7 +28,7 @@ g++ -std=c++17 -Iinclude src/*.cpp -o SatThuongNhanVat
 1/2/3: chọn vũ khí; 4: tấn công; 5: nạp đạn; 6: xem trạng thái; 7: hồi mana; 8: chơi lại; 0: thoát.
 
 ## Quy luật chiến đấu
-- Nhân vật có 100 HP, Boss có 160 HP.
+- Nhân vật có 160 HP, Boss có 160 HP.
 - Mỗi lượt đánh, vũ khí gây sát thương theo `SatThuong(1)`; Boss còn sống sẽ phản công 8–12 HP.
 - Súng dùng một viên đạn/lượt; kiếm giảm độ bền 1 mỗi lần đánh; phép thuật tiêu hao mana theo số giây tấn công.
 - Chơi lại phục hồi HP, đạn, mana và độ bền.
