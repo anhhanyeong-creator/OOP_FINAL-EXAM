@@ -38,10 +38,10 @@ void PhepThuat::TanCong() {
     std::cout<<" * VUUT! Phep "<<loaiPhep<<" bung no.\n";
 }
 
-int PhepThuat::SatThuong(int t) const { 
-    if(t<0 || manaHienTai < manaTieuThuMoiGiay*t )
+int PhepThuat::SatThuong(int thoiGian) const { 
+    if(thoiGian<0 || manaHienTai < manaTieuThuMoiGiay*thoiGian )
         return 0;
-    return static_cast<int>(t*tocDoRaDon)*satThuongCoBan;
+    return static_cast<int>(thoiGian*tocDo_)*satThuong_;
 }
 
 std::string PhepThuat::getLoai() const {

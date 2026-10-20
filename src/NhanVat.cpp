@@ -1,60 +1,61 @@
 #include "NhanVat.h"
-#include <algorithm>
 #include <iostream>
 
 NhanVat::NhanVat():
-    ten("Hac Si"),
-    mau(100),
-    mauToiDa(100) {}
+    tenNhanVat_("Hac Si"),
+    mau_(160),
+    mauToiDa_(160) {}
 
-NhanVat::NhanVat(const std::string&t,int hp):
-    ten(t),
-    mau(std::max(0,hp)),
-    mauToiDa(std::max(1,hp)) {}
+NhanVat::NhanVat(const std::string& tenNhanVat,int mau):
+    tenNhanVat_(tenNhanVat),
+    mau_(std::max(0, mau)),
+    mauToiDa_(std::max(1, mau)) {}
 
 std::string NhanVat::getTen() const {
-    return ten;
+    return tenNhanVat_;
 }
 
 int NhanVat::getMau() const { 
-    return mau;
+    return mau_;
 }
 
 int NhanVat::getMauToiDa() const {
-    return mauToiDa;
+    return mauToiDa_;
 }
 
-void NhanVat::setTen(const std::string&t) {
-    if(!t.empty())
-        ten = t;
+void NhanVat::setTen(const std::string& newtenNhanVat) {
+    if(!newtenNhanVat.empty())
+        tenNhanVat_ = newtenNhanVat;
 }
 
-void NhanVat::setMau(int hp) {
-    mau = std::clamp(hp,0,mauToiDa);
+void NhanVat::setMau(int newMau_) {
+    mau_ = std::clamp(newMau_ ,0 ,mauToiDa_);
 }
 
-void NhanVat::themVuKhi(std::unique_ptr<VuKhi>vk) {
-    if (vk) danhSachVuKhi.push_back(std::move(vk));
+void NhanVat::themVuKhi(std::unique_ptr<VuKhi>  vuKhi) {
+    if (vuKhi) danhSachVuKhi_.push_back(std::move(vuKhi));
 }
 
-VuKhi* NhanVat::getVuKhi(int i) {
-    return i>=0&&i<(int)danhSachVuKhi.size()?danhSachVuKhi[i].get():nullptr;
+VuKhi* NhanVat::getVuKhi(int index) {
+    return (index >= 0 && index < (int)(danhSachVuKhi_.size())) // ép kiểu size về int vì size trả về số nguyên không dấu (tránh trường so sánh 2 số nguyên có dấu và không dấu)
+           ? danhSachVuKhi_[index].get() 
+           : nullptr;
 }
 
 int NhanVat::soVuKhi() const { 
-    return (int)danhSachVuKhi.size();
+    return (int)danhSachVuKhi_.size();
 }
 
-void NhanVat::nhanSatThuong(int s) {
-    mau=std::max(0,mau-std::max(0,s));
+void NhanVat::nhanSatThuong(int satThuong) {
+    mau_ = std::max(0,mau_-std::max(0,satThuong));
 }
 
 void NhanVat::hoiMau() {
-    mau=mauToiDa;
+    mau_ = mauToiDa_;
 }
 
 void NhanVat::hienThiTrangThai() const {
-    std::cout<<"Nhan vat: "<<ten<<" | HP: "<<mau<<"/"<<mauToiDa<<"\n";
-    for(size_t i=0;i<danhSachVuKhi.size();++i)
-        std::cout<<i+1<<". "<<danhSachVuKhi[i]->getTen()<<" ["<<danhSachVuKhi[i]->getLoai()<<"] - sat thuong "<<danhSachVuKhi[i]->getSatThuongCoBan()<<"\n";
+    std::cout<<"Nhan vat: "<<tenNhanVat_<<" | HP: "<<mau_<<"/"<<mauToiDa_<<"\n";
+    for(size_t i=0;i<danhSachVuKhi_.size();++i)
+        std::cout<<i+1<<". "<<danhSachVuKhi_[i]->getTen()<<" ["<<danhSachVuKhi_[i]->getLoai()<<"] - sat thuong "<<danhSachVuKhi_[i]->getSatThuongCoBan()<<"\n";
 }

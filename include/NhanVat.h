@@ -3,30 +3,33 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <algorithm>
+
 #include "VuKhi.h"
 class NhanVat {
-private:
-    std::string ten;
-    int mau, mauToiDa;
-    std::vector<std::unique_ptr<VuKhi>> danhSachVuKhi;
-public:
-    //Constructor
-    NhanVat();
-    NhanVat(const std::string& ten,int mau);
+    private:
+        std::string tenNhanVat_;
+        int mau_, mauToiDa_;
+        std::vector<std::unique_ptr<VuKhi>> danhSachVuKhi_;
+        
+    public:
+        //Constructor
+        NhanVat();
+        NhanVat(const std::string& tenNhanVat,int mau);
 
-    //Getter, setter
-    std::string getTen() const;
-    int getMau() const;
-    int getMauToiDa() const;
-    void setTen(const std::string& ten);
-    void setMau(int mau);
+        //Getter, setter
+        std::string getTen() const;
+        int getMau() const;
+        int getMauToiDa() const;
+        void setTen(const std::string& tenNhanVat);
+        void setMau(int mau);
 
-    //Ham xu ly
-    void themVuKhi(std::unique_ptr<VuKhi> vk);
-    VuKhi* getVuKhi(int i);
-    int soVuKhi() const;
-    void nhanSatThuong(int satThuong);
-    void hoiMau();
-    void hienThiTrangThai() const;
+        //Ham xu ly
+        void themVuKhi(std::unique_ptr<VuKhi> vuKhi);
+        VuKhi* getVuKhi(int index);
+        int soVuKhi() const;
+        void nhanSatThuong(int satThuong);
+        void hoiMau();
+        void hienThiTrangThai() const;
 };
 #endif

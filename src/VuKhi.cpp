@@ -1,54 +1,70 @@
 #include "VuKhi.h"
 #include <limits>
-VuKhi::VuKhi() : ten("Chua dat ten"), satThuongCoBan(10), tocDoRaDon(1.0) {}
+VuKhi::VuKhi() : 
+    tenVuKhi_(""), 
+    satThuong_(0), //Mac dinh sat thuong = 0 vì chưa có đối tượng vũ khí
+    tocDo_(0) {} //Mac định tốc độ hồi chiêu = 0
 
-VuKhi::VuKhi(const std::string& t, int s, double tocDo) : ten(t), satThuongCoBan(s), tocDoRaDon(tocDo) {}
+VuKhi::VuKhi(const std::string& tenVuKhi, int satThuong, double tocDo) : 
+    tenVuKhi_(tenVuKhi), 
+    satThuong_(satThuong), 
+    tocDo_(tocDo) {}
 
-std::string VuKhi::getTen() const { return ten; }
-
-int VuKhi::getSatThuongCoBan() const { return satThuongCoBan; }
-
-double VuKhi::getTocDoRaDon() const { return tocDoRaDon; }
-
-void VuKhi::setTen(const std::string& t){
-    if (!t.empty()) ten=t; 
+std::string VuKhi::getTen() const { 
+    return tenVuKhi_; 
 }
 
-void VuKhi::setSatThuongCoBan(int s) {
-    if (s>=0) satThuongCoBan=s; 
+int VuKhi::getSatThuongCoBan() const { 
+    return satThuong_; 
 }
 
-void VuKhi::setTocDoRaDon(double t) {
-    if (t>0) tocDoRaDon=t; 
+double VuKhi::getTocDoRaDon() const { 
+    return tocDo_; 
 }
 
-void VuKhi::xuat(std::ostream& os) const {
-    os << "Ten vu khi: " << ten << "\nSat thuong co ban: " << satThuongCoBan
-       << "\nToc do ra don: " << tocDoRaDon << " don/giay\n";
+void VuKhi::setTen(const std::string& tenVuKhi){
+    if (!tenVuKhi.empty()) 
+        tenVuKhi_ = tenVuKhi;  
+}
+
+void VuKhi::setSatThuongCoBan(int satThuong) {
+    if (satThuong>=0) 
+        satThuong_ = satThuong; 
+}
+
+void VuKhi::setTocDoRaDon(double tocDo) {
+    if (tocDo>0) 
+        tocDo_ = tocDo; 
+}
+
+void VuKhi::xuat(std::ostream& os) const { 
+    os << "Ten vu khi: " << tenVuKhi_ << "\nSat thuong co ban: " << satThuong_
+       << "\nToc do ra don: " << tocDo_ << " don/giay\n";
 }
 
 void VuKhi::nhap(std::istream& is) {
-    std::string t; int s; double tocDo;
-    std::cout << "Ten vu khi: "; std::getline(is >> std::ws,t);
-    std::cout << "Sat thuong co ban: "; is >> s;
+    std::string tenVuKhi; int satThuong; double tocDo;
+    std::cout << "Ten vu khi: "; std::getline(is >> std::ws,tenVuKhi);
+    std::cout << "Sat thuong co ban: "; is >> satThuong;
     std::cout << "Toc do ra don (don/giay): "; is >> tocDo;
-    if (is && !t.empty() && s>=0 && tocDo>0) { 
-        ten=t; 
-        satThuongCoBan=s; 
-        tocDoRaDon=tocDo; 
+    if (is && !tenVuKhi.empty() && satThuong>0 && tocDo>0) { 
+        tenVuKhi_ = tenVuKhi; 
+        satThuong_ = satThuong; 
+        tocDo_ = tocDo; 
     }
     else { 
-        is.clear(); 
+        is.clear(); // Đặt luồng nhập về bình thường khi người dùng nhập saikiểu dữ liệu
         is.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+        //Dọn bộ đệm đã nhập sai
     }
 }
 
-std::ostream& operator<<(std::ostream& os, const VuKhi& vk) { 
-    vk.xuat(os); 
+std::ostream& operator<<(std::ostream& os, const VuKhi& vuKhi) { 
+    vuKhi.xuat(os); 
     return os; 
 }
 
-std::istream& operator>>(std::istream& is, VuKhi& vk) { 
-    vk.nhap(is); 
+std::istream& operator>>(std::istream& is, VuKhi& vuKhi) { 
+    vuKhi.nhap(is); 
     return is; 
 }

@@ -6,7 +6,11 @@ Sung::Sung() :
     VuKhi("Sung mac dinh",20,2.0), 
     danTrongOng(6), 
     tocDoThayBang(2.0) {}
-Sung::Sung(const std::string& t,int s,double td,int d,double tb):VuKhi(t,s,td),danTrongOng(d),tocDoThayBang(tb){}
+
+Sung::Sung(const std::string& t,int s,double td,int d,double tb): 
+    VuKhi(t,s,td),
+    danTrongOng(d),
+    tocDoThayBang(tb) {}
 
 int Sung::getDanTrongOng() const {
     return danTrongOng;
@@ -27,15 +31,15 @@ void Sung::setTocDoThayBang(double g) {
 }
 
 void Sung::TanCong() {
-    std::cout<<" * BANG! Sung "<<ten<<" khai hoa.\n";
+    std::cout<<" * BANG! Sung "<<tenVuKhi_<<" khai hoa.\n";
 }
 
-int Sung::SatThuong(int t) const {
-    if(t<0||danTrongOng<=0)
+int Sung::SatThuong(int thoiGian) const {
+    if(thoiGian<0||danTrongOng<=0)
         return 0; 
-    int soPhat=static_cast<int>(t*tocDoRaDon); 
+    int soPhat=static_cast<int>(thoiGian*tocDo_); 
     if(soPhat>danTrongOng) soPhat=danTrongOng;
-    return soPhat*satThuongCoBan;
+    return soPhat*satThuong_;
 }
 
 std::string Sung::getLoai() const {

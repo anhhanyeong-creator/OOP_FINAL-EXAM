@@ -65,7 +65,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 #endif
-    NhanVat nv("Hac Si",100);
+    NhanVat nv("Hac Si", 160);
     nv.themVuKhi(make_unique<Sung>("Eclipse",24,2.0,6,2.0));
     nv.themVuKhi(make_unique<Kiem>("Phan Quang",18,1.0,100));
     nv.themVuKhi(make_unique<PhepThuat>("Loi Quang",32,1.0,"Loi",5));
